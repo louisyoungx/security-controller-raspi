@@ -4,9 +4,10 @@ from django.shortcuts import render
 from django.middleware.csrf import get_token
 from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
+from utils.Gate import Gate_Control
 
 # Create your views here.
-from django.views.decorators.csrf import csrf_exempt
 
 
 class Token(View):
@@ -27,6 +28,9 @@ class OpenGate(View):
         if FromUrl == "https://louisyoung.work":
 
             # TODO 此处业务处理
+
+            gate = Gate_Control(times=0.5)
+            gate.open()
 
             return HttpResponse(200)
         else:

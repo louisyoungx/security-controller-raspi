@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-class Gate_control(object):
+class Gate_Control(object):
     
     def __init__(self, channel=None, times=None):
         if channel == None:
