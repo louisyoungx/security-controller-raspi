@@ -1711,3 +1711,22 @@ Ctrl+C 退出
 [2020/11/10 07:20:33] [ERROR] [client] Server failed to allocate tunnel: 隧道 http://louis.free.idcfengye.com 已注册.
 [2020/11/10 07:20:36] [ERROR] [client] Server failed to allocate tunnel: 隧道 http://louis.free.idcfengye.com 已注册.
 [2020/11/10 07:20:47] [ERROR] [client] Server failed to allocate tunnel: 隧道 http://louis.free.idcfengye.com 已注册.
+使用说明
+在命令行模式运行 python sunny.py --clientid=xxxxxxxx
+如果是多个隧道换成 python sunny.py --clientid=xxxxxxxx,xxxxxxxx
+请登录 https://ngrok.cc 获取 clientid
+
+欢迎使用内网穿透 python-ngrok v1.42
+Ctrl+C 退出
+Traceback (most recent call last):
+  File "utils/sunny.py", line 146, in <module>
+    serverArr = ngrok_auth(options['clientid'])
+  File "utils/sunny.py", line 133, in ngrok_auth
+    authData = json.loads(body)
+  File "/usr/lib/python3.7/json/__init__.py", line 348, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.7/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.7/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)

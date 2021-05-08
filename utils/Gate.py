@@ -26,6 +26,6 @@ class Gate_Control(object):
     def close(self):
         GPIO.output(self.channel, GPIO.HIGH)
 
-         
+gate = Gate_Control(times=0.5)
 
         

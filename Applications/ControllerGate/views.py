@@ -1,11 +1,15 @@
 import json
+import time
+
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.middleware.csrf import get_token
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
-from utils.Gate import Gate_Control
+
+from utils.Camera import Camera
+from utils.Gate import gate
+
 
 # Create your views here.
 
@@ -17,8 +21,6 @@ class Token(View):
         return HttpResponse(json.dumps({'token': token}), content_type="application/json,charset=utf-8")
 
 
-@method_decorator(csrf_exempt, name='dispatch')
-
 class OpenGate(View):
     def get(self, request):
         pass
@@ -26,10 +28,14 @@ class OpenGate(View):
         ID = request.POST.get("ID")
         FromUrl = request.POST.get("FromUrl")
         if FromUrl == "https://louisyoung.work":
+            ID = str(time.time())[:10]
 
             # TODO 此处业务处理
+            camera = Camera(ID)
+            camera.shoot()
+            camera.save()
 
-            gate = Gate_Control(times=0.5)
+            # 开门
             gate.open()
 
             return HttpResponse(200)
